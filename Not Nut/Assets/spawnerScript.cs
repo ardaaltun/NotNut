@@ -23,6 +23,7 @@ public class spawnerScript : MonoBehaviour
         if (insted)
         {
             insted.transform.position += new Vector3(-3.5f, 0f, 0f) * Time.deltaTime;
+            insted.transform.Rotate(0f, 0f, 300f * Time.deltaTime) ;
         }
         else
         {
@@ -35,7 +36,7 @@ public class spawnerScript : MonoBehaviour
     void Spawner()
     {
         int selection = Random.Range(0, 2);
-        print(selection);
+        //print(selection);
         if(selection == 0)
         {
             insted = Instantiate(nut);

@@ -13,9 +13,8 @@ public class controller : MonoBehaviour
     {
         rb = gameObject.GetComponent<Rigidbody>();
     }
-
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         //Vector3 position = Input.mousePosition.normalized * 5f;
         //gameObject.transform.position = position;
