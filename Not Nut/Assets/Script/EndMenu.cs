@@ -17,6 +17,7 @@ public class EndMenu : MonoBehaviour
     public void PlayAgain()
     {
         SceneManager.LoadScene("Game");
+        finalScore = 0;
     }
     public void Quit()
     {

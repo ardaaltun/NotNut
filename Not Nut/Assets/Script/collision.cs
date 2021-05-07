@@ -12,27 +12,64 @@ public class collision : MonoBehaviour
     public RawImage heart1;
     public RawImage heart2;
     public RawImage heart3;
-    int underZero = 0;
+    public int underZero = 0;
+    public GameObject cracked;
+    public GameObject crackedNotNUT;
+    private void Start()
+    {
+        Physics.IgnoreLayerCollision(0, 1);
+    }
     private void Update()
     {
+        //print(underZero);
         score.text = scoreInt.ToString();
+
+        if (underZero == 1)
+        {
+            heart3.enabled = false;
+        }
+
+        else if (underZero == 2)
+        {
+            heart2.enabled = false;
+        }
+        else if (underZero == 3)
+        {
+            heart1.enabled = false;
+        }
+
+
+        if (underZero == 3)
+        {
+            SceneManager.LoadScene("EndMenu");
+        }
     }
     private void OnCollisionEnter(Collision collision)
     {
+        Vector3 curretPos;
         if (collision.gameObject.tag == "nut")
         {
-            //print("hit");
+            curretPos = collision.gameObject.transform.position;
             Destroy(collision.gameObject);
+            GameObject crackedOne = Instantiate(cracked);
+            cracked.transform.position = curretPos;
+            //print(curretPos + "    " + cracked.transform.position);
+            Destroy(crackedOne, 1.5f);
             scoreInt++;
+            
             EndMenu.finalScore++;
         }
 
         if (collision.gameObject.tag == "notNut")
         {
-            //print("WRONG");
+            curretPos = collision.gameObject.transform.position;
             Destroy(collision.gameObject);
+            GameObject crackedOne = Instantiate(crackedNotNUT);
+            crackedNotNUT.transform.position = curretPos;
+            //print(curretPos + "    " + crackedNotNUT.transform.position);
+            Destroy(crackedOne, 1.5f);
             scoreInt--;
-
+            
         }
 
         if(underZero == 0 && scoreInt < 0)
@@ -54,11 +91,8 @@ public class collision : MonoBehaviour
             scoreInt = 0;
             underZero++;
         }
+        
 
-
-        if (underZero == 3)
-        {
-            SceneManager.LoadScene("EndMenu");
-        }
+        
     }
 }

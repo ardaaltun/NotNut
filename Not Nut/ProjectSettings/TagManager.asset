@@ -6,6 +6,7 @@ TagManager:
   tags:
   - nut
   - notNut
+  - collider
   layers:
   - Default
   - TransparentFX
