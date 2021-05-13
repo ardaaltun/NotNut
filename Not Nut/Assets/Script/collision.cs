@@ -15,6 +15,7 @@ public class collision : MonoBehaviour
     public int underZero = 0;
     public GameObject cracked;
     public GameObject crackedNotNUT;
+    GameObject crackedOne;
     private void Start()
     {
         Physics.IgnoreLayerCollision(0, 1);
@@ -47,32 +48,31 @@ public class collision : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Vector3 curretPos;
+        
         if (collision.gameObject.tag == "nut")
         {
             curretPos = collision.gameObject.transform.position;
             Destroy(collision.gameObject);
-            GameObject crackedOne = Instantiate(cracked);
-            cracked.transform.position = curretPos;
+            crackedOne = Instantiate(cracked);
+            crackedOne.transform.position = curretPos;
             //print(curretPos + "    " + cracked.transform.position);
-            Destroy(crackedOne, 1.5f);
             scoreInt++;
-            
+            Destroy(crackedOne, 1f);
             EndMenu.finalScore++;
         }
 
-        if (collision.gameObject.tag == "notNut")
+        else if (collision.gameObject.tag == "notNut")
         {
             curretPos = collision.gameObject.transform.position;
             Destroy(collision.gameObject);
-            GameObject crackedOne = Instantiate(crackedNotNUT);
-            crackedNotNUT.transform.position = curretPos;
+            crackedOne = Instantiate(crackedNotNUT);
+            crackedOne.transform.position = curretPos;
             //print(curretPos + "    " + crackedNotNUT.transform.position);
-            Destroy(crackedOne, 1.5f);
+            Destroy(crackedOne, 1f);
             scoreInt--;
-            
         }
-
-        if(underZero == 0 && scoreInt < 0)
+        
+        if (underZero == 0 && scoreInt < 0)
         {
             heart3.enabled = false;
             scoreInt = 0;

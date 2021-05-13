@@ -22,8 +22,8 @@ public class spawnerScript : MonoBehaviour
         
         if (insted)
         {
-            insted.transform.position += new Vector3(-1.6f, 0f, 0f) * Time.deltaTime;
-            insted.transform.Rotate(0f, 0f, 200f * Time.deltaTime) ;
+            insted.transform.position += new Vector3(-3.5f, 0f, 0f) * Time.deltaTime;
+            insted.transform.Rotate(0f, 0f, 300f * Time.deltaTime) ;
         }
         else
         {

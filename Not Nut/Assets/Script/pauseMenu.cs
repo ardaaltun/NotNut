@@ -12,7 +12,6 @@ public class pauseMenu : MonoBehaviour
     public void Awake()
     {
         theMenu.enabled = false;
-        Time.timeScale = 2f;
     }
 
     public void PauseGame()
